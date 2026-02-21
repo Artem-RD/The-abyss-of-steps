@@ -1,0 +1,21 @@
+# Сгенерированные Unity папки
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+
+# Файлы проектов Visual Studio
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+
+# Настройки VS Code
+.vscode/
+
+# OS файлы
+.DS_Store
+Thumbs.db
