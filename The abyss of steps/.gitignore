@@ -5,6 +5,10 @@
 [Bb]uild/
 [Bb]uilds/
 
+# ProBuilder generated data
+[Pp]roBuilder[Dd]ata/
+[Pp]roBuilder[Aa]bout/
+
 # Файлы проектов Visual Studio
 *.csproj
 *.unityproj
