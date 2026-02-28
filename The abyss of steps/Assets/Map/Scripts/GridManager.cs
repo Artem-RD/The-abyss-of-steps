@@ -44,6 +44,10 @@ public class GridManager : MonoBehaviour
                 GameObject newHex = Instantiate(Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
                 HexTile hexTile = newHex.GetComponent<HexTile>();
                 hexTile.SetCoordinates(x,y); // передача расположения гекса
+                System.Array values = System.Enum.GetValues(typeof(HexTile.BiomeType));//Получаем количество значений в списке
+                int randomIndex = Random.Range(0,values.Length);//Рандомно выбераем значения для создание цветов на поле
+                HexTile.BiomeType randomBiome = (HexTile.BiomeType)values.GetValue(randomIndex);//навсякий случай приводим к определенному значению чтобы после нечиго не ломалось если у нас будет не int 
+                hexTile.SetBiome(randomBiome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
             }
