@@ -4,17 +4,14 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
-    //поля для гекса префаб(гекс), размеры ширина и длинна самого гекса
-  [SerializeField] private GameObject Hex;
-    private float _hexWidth = 2.996f;//ширина(не менять значение сетка сломаеться)
-    private float _hexHeigth =0.866f;//высота(не менять значение сетка сломаеться)
-    public float heightMultiplier = 1.498f;// шаг с кторым надо ставить следующий гекс(не менять сетка сломаеться)
+  
+    [SerializeField] private HexSettings hexSettings;//параметры гекса
 
     //поля для создания сетки для расположения гексов
     private int _whidth = 10;
     private int _heigth = 10;
     private Transform [,]grid;
-   
+
     void Start()
     {
        GenerateGrid();
@@ -27,6 +24,7 @@ public class GridManager : MonoBehaviour
     }
 
 
+
 //в этом методе мы строим сетку(поле) и передаем расположение гекса в следующий класс для взаимодействия с ними
    private void  GenerateGrid()
     {
@@ -36,12 +34,12 @@ public class GridManager : MonoBehaviour
             for(int x = 0; x< _whidth; x++)
             {
                 //считаем расположение гексов
-                float posX =x * _hexWidth;
-                if(y% 2 == 1){posX += heightMultiplier; }
-                float posZ = y*_hexHeigth;
+                float posX =x * hexSettings._hexWidth;
+                if(y% 2 == 1){posX += hexSettings.heightMultiplier; }
+                float posZ = y*hexSettings._hexHeigth;
                 float posY = 0;
                 //распологаем их по координатам из расчетов
-                GameObject newHex = Instantiate(Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
+                GameObject newHex = Instantiate(hexSettings.Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
                 HexTile hexTile = newHex.GetComponent<HexTile>();
                 hexTile.SetCoordinates(x,y); // передача расположения гекса
                 System.Array values = System.Enum.GetValues(typeof(HexTile.BiomeType));//Получаем количество значений в списке
