@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3d87f1c0c39f54a99a8a62d790bd09, type: 3}
+  m_Name: HexSettings
+  m_EditorClassIdentifier: Assembly-CSharp::HexSettings
+  Hex: {fileID: 4164302878819349994, guid: f604fe0dad718a943bdcb23f4643b838, type: 3}
+  _hexHeigth: 2.996
+  _hexWidth: 0.866
+  heightMultiplier: 1.498

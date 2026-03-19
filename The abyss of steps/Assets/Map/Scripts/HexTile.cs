@@ -6,8 +6,10 @@ using UnityEngine.PlayerLoop;
 public class HexTile : MonoBehaviour
 {
     // координаты гексы
-    int _gridX;
-    int _gridY;
+   private HexCoordinates _coordinates;
+
+   //массив соседей гекса
+   private HexTile[] _neighbors = new HexTile[6];
 
     // перечисление биомов( возможно временно)
 
@@ -34,10 +36,9 @@ public class HexTile : MonoBehaviour
     }
 
 // присвоение координат дле гексов
-    public void SetCoordinates(int x, int y)
+    public void SetCoordinates(HexCoordinates coords)
     {
-        _gridX = x;
-        _gridY = y;
+        _coordinates = coords;
     }
 
 //присвоение цвета для биома(нужно доработать чтобы после можно было менять на текстуры и добавить ландшафт для определенных биомов)
@@ -59,6 +60,17 @@ public class HexTile : MonoBehaviour
         }
         _material.SetColor("_Color",color);
         _renderer.SetPropertyBlock(_material);
+    }
+
+//метод для получения ссылки на соседей
+    public void SetNeighbor(int direction, HexTile neighbor)
+    {
+        _neighbors[(int)direction] = neighbor;
+    }
+    //метод получения соседей 
+    public HexTile GetNeighbor(int direction)
+    {
+       return _neighbors[(int)direction];
     }
 //методы для старой системы ввода в Unity в будушем возможны конфликты 
     void OnMouseEnter()

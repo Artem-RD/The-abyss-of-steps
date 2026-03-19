@@ -493,7 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a62843d475067438e14adef07f4a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  hexSettings: {fileID: 11400000, guid: 979b64370ceeb394db553da114eb658a, type: 2}
+  Hex: {fileID: 4164302878819349994, guid: f604fe0dad718a943bdcb23f4643b838, type: 3}
+  heightMultiplier: 1.498
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
