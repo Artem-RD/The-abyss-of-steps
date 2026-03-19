@@ -17,6 +17,16 @@ public class GridManager : MonoBehaviour
     private int _heigth = 10;
     private Transform [,]grid;
 
+    public enum Cordinates
+    {
+        Ne,
+        E,
+        SE,
+        SW,
+        W,
+        NW
+    }
+
     void Start()
     {
        GenerateGrid();
@@ -55,6 +65,18 @@ public class GridManager : MonoBehaviour
                 hexTile.SetBiome(randomBiome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
+            }
+        }
+    }
+
+    private void EstablishNeighbors(Cordinates cordinates)
+    {
+         foreach (var kvp in _hexDict)
+        {
+            
+            switch (cordinates)
+            {
+                
             }
         }
     }

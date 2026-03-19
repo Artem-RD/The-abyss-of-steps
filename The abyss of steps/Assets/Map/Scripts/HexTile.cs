@@ -9,7 +9,7 @@ public class HexTile : MonoBehaviour
    private HexCoordinates _coordinates;
 
    //массив соседей гекса
-   private HexTile[] _neighbords = new HexTile[6];
+   private HexTile[] _neighbors = new HexTile[6];
 
     // перечисление биомов( возможно временно)
 
@@ -65,13 +65,13 @@ public class HexTile : MonoBehaviour
 //метод для получения ссылки на соседей
     public void SetNeighbor(int direction, HexTile neighbor)
     {
-        
+        _neighbors[(int)direction] = neighbor;
     }
     //метод получения соседей 
-  /*  public HexTile GetNeighbor(int direction)
+    public HexTile GetNeighbor(int direction)
     {
-        
-    }*/
+       return _neighbors[(int)direction];
+    }
 //методы для старой системы ввода в Unity в будушем возможны конфликты 
     void OnMouseEnter()
     {
