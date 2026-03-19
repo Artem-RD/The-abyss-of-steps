@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,6 +9,8 @@ public class GridManager : MonoBehaviour
 {
   
     [SerializeField] private HexSettings hexSettings;//параметры гекса
+
+    private Dictionary<HexCoordinates,HexTile> _hexDict = new Dictionary<HexCoordinates, HexTile>();// словарь для хранения ближайших гексов
 
     //поля для создания сетки для расположения гексов
     private int _whidth = 10;
@@ -33,17 +38,19 @@ public class GridManager : MonoBehaviour
         {
             for(int x = 0; x< _whidth; x++)
             {
+                //передаем кубические координаты
+                HexCoordinates coords = HexCoordinates.FromOffsetCoordinates(x, y);
                 //считаем расположение гексов
-                float posX =x * hexSettings._hexWidth;
-                if(y% 2 == 1){posX += hexSettings.heightMultiplier; }
-                float posZ = y*hexSettings._hexHeigth;
+                float posX = (coords._Q + coords._R * 0.5f) * hexSettings._hexWidth;
+                float posZ = coords._R * hexSettings._hexHeigth;
                 float posY = 0;
                 //распологаем их по координатам из расчетов
                 GameObject newHex = Instantiate(hexSettings.Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
-                HexTile hexTile = newHex.GetComponent<HexTile>();
-                hexTile.SetCoordinates(x,y); // передача расположения гекса
+                HexTile hexTile = newHex.GetComponent<HexTile>(); 
+                hexTile.SetCoordinates(coords); // передача расположения гекса
+                _hexDict[coords] = hexTile;//передача расположения ближайших гексов
                 System.Array values = System.Enum.GetValues(typeof(HexTile.BiomeType));//Получаем количество значений в списке
-                int randomIndex = Random.Range(0,values.Length);//Рандомно выбераем значения для создание цветов на поле
+                int randomIndex = UnityEngine.Random.Range(0,values.Length);//Рандомно выбераем значения для создание цветов на поле
                 HexTile.BiomeType randomBiome = (HexTile.BiomeType)values.GetValue(randomIndex);//навсякий случай приводим к определенному значению чтобы после нечиго не ломалось если у нас будет не int 
                 hexTile.SetBiome(randomBiome);
                 grid[x,y] = newHex.transform;
