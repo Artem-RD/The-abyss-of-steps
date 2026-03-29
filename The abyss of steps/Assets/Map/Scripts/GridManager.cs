@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
@@ -10,6 +12,9 @@ public class GridManager : MonoBehaviour
   
     [SerializeField] private HexSettings hexSettings;//параметры гекса
 
+    
+    private int _deltaQ;
+    private int _deltaR;
     private Dictionary<HexCoordinates,HexTile> _hexDict = new Dictionary<HexCoordinates, HexTile>();// словарь для хранения ближайших гексов
 
     //поля для создания сетки для расположения гексов
@@ -17,7 +22,7 @@ public class GridManager : MonoBehaviour
     private int _heigth = 10;
     private Transform [,]grid;
 
-    public enum Cordinates
+    public enum HexDirection
     {
         Ne,
         E,
@@ -65,19 +70,44 @@ public class GridManager : MonoBehaviour
                 hexTile.SetBiome(randomBiome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
+                EstablishNeighbors(); // поиск соседий и передача информации об них
             }
         }
     }
 
-    private void EstablishNeighbors(Cordinates cordinates)
+    private void EstablishNeighbors()
     {
          foreach (var kvp in _hexDict)
         {
-            
-            switch (cordinates)
+            HexTile currentHex = kvp.Value;
+            HexCoordinates currentCoords = kvp.Key;//передача координат ближайших соседей гекса
+            foreach(var cor in Enum.GetValues(typeof(HexDirection)))
             {
-                
+                switch (cor)
+              {
+                case HexDirection.Ne:  _deltaQ =1; _deltaR = -1;
+                break;
+                case HexDirection.E: _deltaQ= 1;_deltaR = 0;
+                break;
+                case HexDirection.SE: _deltaQ = 0;_deltaR=1;
+                break;
+                case HexDirection.SW: _deltaQ =-1;_deltaR =1;
+                break;
+                case HexDirection.W: _deltaQ =-1;_deltaR = 0;
+                break;
+                case HexDirection.NW: _deltaQ = 0; _deltaR = -1;
+                break;
+              }
+              int neighborQ = currentCoords._Q + _deltaQ;
+              int neighborR = currentCoords._R + _deltaR;
+              HexCoordinates neighborCoords = new HexCoordinates(neighborQ, neighborR);
+              if(_hexDict.TryGetValue(neighborCoords, out HexTile neighbor))
+                {
+                    currentHex.SetNeighbor((int)cor,neighbor);
+                }
             }
+            
+            
         }
     }
 }

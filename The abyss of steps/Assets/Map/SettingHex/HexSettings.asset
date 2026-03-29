@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HexSettings
   m_EditorClassIdentifier: Assembly-CSharp::HexSettings
   Hex: {fileID: 4164302878819349994, guid: f604fe0dad718a943bdcb23f4643b838, type: 3}
-  _hexHeigth: 2.996
-  _hexWidth: 0.866
+  _hexHeigth: 0.866
+  _hexWidth: 2.996
   heightMultiplier: 1.498
