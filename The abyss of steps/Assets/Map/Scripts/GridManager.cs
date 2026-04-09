@@ -43,6 +43,15 @@ public class GridManager : MonoBehaviour
         
     }
 
+    private HexTile.BiomeType GetBiomeFromNoise(float q,float r)
+    {
+        float noise = Mathf.PerlinNoise(q*hexSettings._noisScale,r*hexSettings._noisScale);
+        if (noise < 0.3f) return HexTile.BiomeType.Water;
+        if (noise < 0.6f) return HexTile.BiomeType.Grass;
+        if (noise < 0.8f) return HexTile.BiomeType.Desert;
+        return HexTile.BiomeType.Moutain;
+    }
+
 
 
 //в этом методе мы строим сетку(поле) и передаем расположение гекса в следующий класс для взаимодействия с ними
@@ -63,16 +72,15 @@ public class GridManager : MonoBehaviour
                 GameObject newHex = Instantiate(hexSettings.Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
                 HexTile hexTile = newHex.GetComponent<HexTile>(); 
                 hexTile.SetCoordinates(coords); // передача расположения гекса
-                _hexDict[coords] = hexTile;//передача расположения ближайших гексов
-                System.Array values = System.Enum.GetValues(typeof(HexTile.BiomeType));//Получаем количество значений в списке
-                int randomIndex = UnityEngine.Random.Range(0,values.Length);//Рандомно выбераем значения для создание цветов на поле
-                HexTile.BiomeType randomBiome = (HexTile.BiomeType)values.GetValue(randomIndex);//навсякий случай приводим к определенному значению чтобы после нечиго не ломалось если у нас будет не int 
-                hexTile.SetBiome(randomBiome);
+                _hexDict[coords] = hexTile;//передача расположения ближайших гексов            
+                HexTile.BiomeType biome = GetBiomeFromNoise(coords._Q,coords._R);// передача координат гексов для создания шума биомов
+                hexTile.SetBiome(biome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
-                EstablishNeighbors(); // поиск соседий и передача информации об них
+                 
             }
         }
+        EstablishNeighbors();// поиск соседий и передача информации об них
     }
 
     private void EstablishNeighbors()

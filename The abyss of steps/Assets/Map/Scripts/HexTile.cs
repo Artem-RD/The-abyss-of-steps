@@ -72,6 +72,23 @@ public class HexTile : MonoBehaviour
     {
        return _neighbors[(int)direction];
     }
+
+// метод проверки координат гексов временный можно удалить===================================================
+    private void LogNeighbors()
+    {
+        for (int i = 0; i < _neighbors.Length; i++)
+    {
+        if (_neighbors[i] != null)
+        {
+            Debug.Log($"Сосед {i}: ({_neighbors[i]._coordinates._Q}, {_neighbors[i]._coordinates._R})");
+        }
+        else
+        {
+            Debug.Log($"Сосед {i}: отсутствует");
+        }
+    }
+    }
+//============================================================================================================
 //методы для старой системы ввода в Unity в будушем возможны конфликты 
     void OnMouseEnter()
     {
@@ -83,6 +100,10 @@ public class HexTile : MonoBehaviour
     {
          _material.SetColor("_Color",_colorBiome);
         _renderer.SetPropertyBlock(_material);
+    }
+    void OnMouseDown()
+    {
+        LogNeighbors();
     }
 
 }
