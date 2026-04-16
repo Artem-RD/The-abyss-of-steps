@@ -16,7 +16,7 @@ public class GridManager : MonoBehaviour
     private int _deltaQ;
     private int _deltaR;
     private Dictionary<HexCoordinates,HexTile> _hexDict = new Dictionary<HexCoordinates, HexTile>();// словарь для хранения ближайших гексов
-
+    private Dictionary<HexCoordinates,HexCellData> _dataDict = new Dictionary<HexCoordinates, HexCellData>();//новый словарь для хранения ближайшиъ гексов
     //поля для создания сетки для расположения гексов
     private int _whidth = 10;
     private int _heigth = 10;
@@ -72,12 +72,15 @@ public class GridManager : MonoBehaviour
                 GameObject newHex = Instantiate(hexSettings.Hex,new Vector3(posX,posY,posZ),Quaternion.identity);
                 HexTile hexTile = newHex.GetComponent<HexTile>(); 
                 hexTile.SetCoordinates(coords); // передача расположения гекса
-                _hexDict[coords] = hexTile;//передача расположения ближайших гексов            
+                _hexDict[coords] = hexTile;//передача расположения ближайших гексов   
+                     
                 HexTile.BiomeType biome = GetBiomeFromNoise(coords._Q,coords._R);// передача координат гексов для создания шума биомов
+                //новый метод передачи расположения гексов
+                BiomeType globalBiome = (BiomeType)biome; // biome имеет тип HexTile.BiomeType
+                HexCellData cellData = new HexCellData(coords, globalBiome); 
                 hexTile.SetBiome(biome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
-                 
             }
         }
         EstablishNeighbors();// поиск соседий и передача информации об них
