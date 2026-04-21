@@ -40,8 +40,6 @@ public class HexCellData
             case BiomeType.Desert: return Color.saddleBrown;
             case BiomeType.Moutain: return Color.gray;
             default: return Color.white;
-
-
         } 
     }
 

@@ -43,6 +43,7 @@ public class GridManager : MonoBehaviour
         
     }
 
+// метод для расстоновки биомов через шум
     private HexTile.BiomeType GetBiomeFromNoise(float q,float r)
     {
         float noise = Mathf.PerlinNoise(q*hexSettings._noisScale,r*hexSettings._noisScale);
@@ -86,6 +87,7 @@ public class GridManager : MonoBehaviour
         EstablishNeighbors();// поиск соседий и передача информации об них
     }
 
+// метод для посика соседий путем перебора сторон света
     private void EstablishNeighbors()
     {
          foreach (var kvp in _hexDict)
