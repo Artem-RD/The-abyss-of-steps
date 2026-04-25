@@ -11,7 +11,7 @@ public class GridManager : MonoBehaviour
 {
   
     [SerializeField] private HexSettings hexSettings;//параметры гекса
-
+    [SerializeField] private HexMesh hexMesh;
     
     private int _deltaQ;
     private int _deltaR;
@@ -79,11 +79,13 @@ public class GridManager : MonoBehaviour
                 //новый метод передачи расположения гексов
                 BiomeType globalBiome = (BiomeType)biome; // biome имеет тип HexTile.BiomeType
                 HexCellData cellData = new HexCellData(coords, globalBiome); 
+                _dataDict[coords] = cellData;
                 hexTile.SetBiome(biome);
                 grid[x,y] = newHex.transform;
                 newHex.transform.parent = transform;
             }
         }
+        hexMesh.BuildMesh(_dataDict, hexSettings);
         EstablishNeighbors();// поиск соседий и передача информации об них
     }
 

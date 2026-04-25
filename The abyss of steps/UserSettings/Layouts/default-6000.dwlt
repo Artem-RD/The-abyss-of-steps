@@ -1627,7 +1627,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Map/material
+    - Assets/Map/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1637,7 +1637,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Map/material
+  - Assets/Map/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\\u0430\u0440\u0442\\Desktop\\The abyss of steps\\The
     abyss of steps"
@@ -1645,11 +1645,11 @@ MonoBehaviour:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 56.400024}
+    scrollPos: {x: 0, y: 59.600006}
     m_SelectedIDs:
-    - m_Data: 47562
+    - m_Data: 47564
     m_LastClickedID:
-      m_Data: 47562
+      m_Data: 47564
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 47252
@@ -1713,8 +1713,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 47562
-    m_LastClickedInstanceID: 47562
+    - m_Data: 38144
+    m_LastClickedInstanceID: 38144
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
