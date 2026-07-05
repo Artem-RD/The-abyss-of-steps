@@ -70,7 +70,7 @@ public class HexMesh : MonoBehaviour
         mesh.triangles = _triangels.ToArray();
         mesh.colors = _colors.ToArray();
         mesh.RecalculateNormals();
-        _meshFilter.mesh = mesh;
+       _meshFilter.mesh = mesh;
         _meshCollider.sharedMesh = mesh;
         
          
