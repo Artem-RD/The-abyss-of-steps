@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexCell : MonoBehaviour
@@ -9,11 +10,20 @@ public class HexCell : MonoBehaviour
    List<Vector3> _vertices;
    List<int> _triangles;
 
+   public HexCoordinates1 _coordinates;
+   public Color _color;
+
+   List<Color> _colors;
+
+   MeshCollider _meshCollider;
+
     void Awake()
     {
         GetComponent<MeshFilter>().mesh = _hexMesh = new Mesh();
+        _meshCollider = gameObject.AddComponent<MeshCollider>();
         _hexMesh.name = "Hex Mesh";
         _vertices = new List<Vector3>();
+        _colors = new List<Color>();
         _triangles = new List<int>();
     }
 
@@ -31,13 +41,17 @@ public class HexCell : MonoBehaviour
     {
         _hexMesh.Clear();
 		_vertices.Clear();
+        _colors.Clear();
 		_triangles.Clear();
 		for (int i = 0; i < cells.Length; i++) {
 			Triangulate(cells[i]);
 		}
 		_hexMesh.vertices = _vertices.ToArray();
+        _hexMesh.colors = _colors.ToArray();
 		_hexMesh.triangles = _triangles.ToArray();
 		_hexMesh.RecalculateNormals();
+
+        _meshCollider.sharedMesh = _hexMesh;
     }
 
     private void Triangulate(HexCell cell)
@@ -49,6 +63,14 @@ public class HexCell : MonoBehaviour
 				center + HexMetrics._corners[i],
 				center + HexMetrics._corners[i + 1]
 			);
+            AddTriangleColor(cell._color);
         }
+    }
+
+    void AddTriangleColor(Color color)
+    {
+        _colors.Add(color);
+        _colors.Add(color);
+        _colors.Add(color);
     }
 }

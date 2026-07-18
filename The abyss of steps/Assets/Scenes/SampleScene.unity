@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.43032312, y: -0, z: -0, w: 0.9026749}
-  m_LocalPosition: {x: 10.59, y: 12.41, z: -4.48}
+  m_LocalPosition: {x: 45.79, y: 65.95, z: -23.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,6 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _h: 6
   _w: 6
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  touchedColor: {r: 1, g: 0, b: 1, a: 1}
   cellPrefab: {fileID: 4718712496240647759, guid: 532d3c9ed307d77499b4a10e67d0deea, type: 3}
   cellLabalPrefab: {fileID: 1801260484143153409, guid: ce549d40df10f4a45a952a4e3b5d8a4a, type: 3}
 --- !u!4 &404676632
@@ -315,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 404676630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.36852, y: 1.69, z: 16.16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -642,7 +644,7 @@ Transform:
   m_GameObject: {fileID: 2108430872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.080871, y: 3.12571, z: -19.69917}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -739,6 +741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca2494ecf6c9204dbc320469d22668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HexCell
+  _coordinates:
+    x: 0
+    z: 0
+  _color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
